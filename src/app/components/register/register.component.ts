@@ -1,33 +1,40 @@
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
-
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-register',
-  imports: [MatFormFieldModule,ReactiveFormsModule,CommonModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCardModule
+  ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+export class RegisterComponent {
+  registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+    this.registrationForm = this.fb.group({
+      username: [''],
+      email: [''],
+      password: [''],
+      confirmPassword: ['']
     });
   }
 
-  ngOnInit(): void {}
-
   onSubmit() {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-      // כאן תוכל להוסיף את הלוגיקה לשליחת הנתונים לשרת
+    if (this.registrationForm.valid) {
+      console.log('Form Submitted!', this.registrationForm.value);
     }
   }
 }
