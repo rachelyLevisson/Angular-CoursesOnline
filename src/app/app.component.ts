@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 // import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 
 
@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule],
+    providers: [provideAnimations()],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
