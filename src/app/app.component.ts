@@ -6,15 +6,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-// import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
   imports: [RouterModule,FormsModule,LoginComponent,
-    CommonModule,
+    BrowserModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
