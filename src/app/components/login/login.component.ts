@@ -11,19 +11,22 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  userName: string = '';
+  email: string = '';
   password: string = '';
   flag: boolean = false;
   user: any;
-
+  credentials: any;
   constructor(private router: Router, private authService: AuthService) {} // הזרקת Router
 
   send() {
-    console.log(this.userName);
+    console.log(this.email);
     console.log(this.password);
-    // this.user = this.authService.login({this.userName,this.password});
-
-    this.router.navigate(['/courses']); // ניווט לקומפוננטה אחרת
+    this.credentials = { email: this.email, password: this.password };
+    this.user = this.authService.login(this.credentials);
+    if (this.user) {
+      alert('succsess!!!');
+      this.router.navigate(['/courses']); // ניווט לקומפוננטה אחרת
+    } else alert('no bad!!!');
     console.log('i');
     this.flag = true;
     console.log('flag: ', this.flag);
