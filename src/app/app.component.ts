@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-root',
   standalone: true,
   imports: [
+    HttpClient,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -22,7 +23,6 @@ import { HttpClient } from '@angular/common/http';
     MatFormFieldModule,
     LoginComponent,
     RegisterComponent,
-    HttpClient,
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
