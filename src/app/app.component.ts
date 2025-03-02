@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from "./components/register/register.component";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { RegisterComponent } from "./components/register/register.component";
     MatButtonModule,
     MatFormFieldModule,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HttpClient,
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
