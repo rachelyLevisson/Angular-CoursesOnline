@@ -1,7 +1,12 @@
 <p>courses works!</p>
 
 <div>
-<h1>hello</h1>
+  <h1>hello</h1>
 
-
+  @for(item of allCours; track item.id){
+  {{ item }}
+  <button (click)="onDetails(item.id)">details</button>
+  }
 </div>
+
+<router-outlet></router-outlet>
