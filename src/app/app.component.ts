@@ -7,13 +7,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from "./components/register/register.component";
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    HttpClient,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
