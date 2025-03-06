@@ -1,24 +1,38 @@
-import { Component, Input, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { Router, RouterOutlet } from '@angular/router';
-import { CourseDetailsComponent } from '../course-details/course-details.component';
-import { LoginComponent } from '../login/login.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './courses.component.html',
-  styleUrl: './courses.component.css',
+  styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent {
-  allCours: any;
+  allCours: any[] = [];
 
-  constructor(private courssServise: CourseService, private router: Router) {
-    this.allCours = this.courssServise.getCourses();
+  constructor(private courseService: CourseService, private router: Router) {
+    this.loadCourses();
+  }
+
+  loadCourses() {
+    this.courseService.getCourses().subscribe({
+      next: (response) => {
+        this.allCours = response;
+      },
+      error: (error) => {
+        if (error.status === 401) {
+          console.log("error!!!! 401 go to login????");
+          
+          // this.router.navigate(['/login']);
+        }
+      }
+    });
   }
 
   onDetails(id: number) {
-    this.router.navigate(['/course-details']);
+    this.router.navigate(['/course-details', id]);
   }
 }

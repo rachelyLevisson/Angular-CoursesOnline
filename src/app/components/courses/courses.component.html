@@ -1,11 +1,22 @@
 <p>courses works!</p>
 
-<div>
-  <h1>hello</h1>
+<div class="courses-container">
+  <h1>Courses List</h1>
 
-  @for(item of allCours; track item.id){
-  {{ item }}
-  <button (click)="onDetails(item.id)">details</button>
+  @for(course of allCours; track course.id) {
+    <div class="course-card">
+      <h2>{{ course.title }}</h2>
+      <p>{{ course.description }}</p>
+      <div class="course-details">
+        <span class="price">Title: {{ course.teacherId }}</span>
+        <!-- <span class="duration">Duration: {{ course.duration }}</span> -->
+      </div>
+      <button class="details-btn" (click)="onDetails(course.id)">View Details</button>
+    </div>
+  } @empty {
+    <div class="no-courses">
+      <p>No courses available at the moment.</p>
+    </div>
   }
 </div>
 
