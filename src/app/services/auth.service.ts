@@ -22,7 +22,7 @@ export class AuthService {
       tap((response: any) => {
         console.log('AuthService - Login response:', response);
         if (response?.token) {
-          const tokenWithBearer = `Bearer ${response.token}`;
+          const tokenWithBearer = response.token;
           console.log('AuthService - Setting token:', tokenWithBearer);
           this.setToken(tokenWithBearer);
           console.log('AuthService - Token after set:', this.getToken());

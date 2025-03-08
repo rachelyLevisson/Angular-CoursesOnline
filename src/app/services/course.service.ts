@@ -11,6 +11,8 @@ export class CourseService {
   constructor(private http: HttpClient) { }
 
   getCourses(): Observable<any> {
+    console.log("nowww!!");
+    console.log('the token is👍🏻 service....: ', localStorage.getItem('auth_token'));
     return this.http.get(this.apiUrl);
   }
 

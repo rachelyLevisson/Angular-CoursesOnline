@@ -9,26 +9,12 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: '', pathMatch: 'full' },
-  // { path: 'register', component: RegisterComponent },
   { path: '',component : HomePageComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'courses', component: CoursesComponent },
   { path: 'courses/:id', component: CourseDetailsComponent },
-
-  // {
-  //   path: 'courses/:id',
-  //   component: CourseDetailsComponent,
-  // data: { prerender: true }, // מצביע על כך שהמסלול דורש פרה-רנדרינג
-  // getPrerenderParams: () => {
-  //   return [
-  //     { id: 'course1' },
-  //     { id: 'course2' },
-  //     // הוסיפי כאן פרמטרים נוספים אם יש
-  //   ];
-  // }
-  // },
-
-  // { path: 'manage-courses', component: ManageCoursesComponent }
+  { path: 'manage-courses', component: ManageCoursesComponent }
 ];
 
 @NgModule({

@@ -18,17 +18,19 @@ export class CoursesComponent {
   }
 
   loadCourses() {
+    console.log('the token is👍🏻: ', localStorage.getItem('auth_token'));
     this.courseService.getCourses().subscribe({
       next: (response) => {
+        console.log("good");
         this.allCours = response;
       },
       error: (error) => {
         if (error.status === 401) {
-          console.log("error!!!! 401 go to login????");
-          
+          console.log('error!!!! 401 go to login????');
+
           // this.router.navigate(['/login']);
         }
-      }
+      },
     });
   }
 

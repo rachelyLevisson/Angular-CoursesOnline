@@ -8,6 +8,8 @@ export const authInterceptor = (req: any, next: any) => {
   // Skip auth requests
   if (req.url.includes('/api/auth/')) {
     console.log('Interceptor - Skipping auth request:', req.url);
+    console.log("✨😢☹️👏🏻");
+    
     return next(req);
   }
 
