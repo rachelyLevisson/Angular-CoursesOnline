@@ -22,7 +22,7 @@ export class AuthService {
       tap((response: any) => {
         console.log('AuthService - Login response:', response);
         if (response?.token) {
-          const tokenWithBearer = response.token;
+          const tokenWithBearer = `Bearer ${response.token}`;
           console.log('AuthService - Setting token:', tokenWithBearer);
           this.setToken(tokenWithBearer);
           console.log('AuthService - Token after set:', this.getToken());
@@ -32,18 +32,33 @@ export class AuthService {
   }
 
   private setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    // localStorage.setItem(this.TOKEN_KEY, token);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(this.TOKEN_KEY, token);
+    } else {
+      console.warn('localStorage is not available');
+    }
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem(this.TOKEN_KEY);
+    } else {
+      console.warn('localStorage is not available');
+      return null;
+    }
   }
 
   isLoggedIn(): boolean {
     return !!this.getToken();
+    // return !!this.getToken();
   }
 
   logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem(this.TOKEN_KEY);
+    } else {
+      console.warn('localStorage is not available');
+    }
   }
 }
