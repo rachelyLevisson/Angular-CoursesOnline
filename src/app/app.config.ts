@@ -1,20 +1,18 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import {
-  provideClientHydration,
-  withEventReplay,
-} from '@angular/platform-browser';
+import {provideClientHydration,withEventReplay,} from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 export const authInterceptor = (req: any, next: any) => {
+  console.log("come here???❓❔❓🤔");
   // Skip auth requests
-  // if (req.url.includes('/api/auth/')) {
-  //   console.log('Interceptor - Skipping auth request:', req.url);
-  //   console.log("✨😢☹️👏🏻");
+  if (req.url.includes('/api/auth/')) {
+    console.log('Interceptor - Skipping auth request:', req.url);
+    console.log("✨😢☹️👏🏻");
 
-  //   return next(req);
-  // }
+    return next(req);
+  }
 
   if (typeof localStorage !== 'undefined') {
     const token = localStorage.getItem('auth_token');
