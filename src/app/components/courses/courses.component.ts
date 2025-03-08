@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { Router, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-courses',
@@ -13,15 +13,21 @@ import { CommonModule } from '@angular/common';
 export class CoursesComponent {
   allCours: any[] = [];
 
-  constructor(private courseService: CourseService, private router: Router) {
-    this.loadCourses();
+  constructor(
+    private courseService: CourseService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadCourses();
+    }
   }
 
   loadCourses() {
     console.log('the token is👍🏻: ', localStorage.getItem('auth_token'));
     this.courseService.getCourses().subscribe({
       next: (response) => {
-        console.log("good");
+        console.log('good');
         this.allCours = response;
       },
       error: (error) => {
