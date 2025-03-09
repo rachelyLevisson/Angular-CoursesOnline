@@ -1,11 +1,13 @@
-<p>home-page works!</p>
-<h1>hello come here</h1>
-
-<p>why</p>
-
-{{ title }}
-<br>
-<button (click)="see()">click me</button>
-<button (click)="open()">open</button>
-
+<div class="container">
+    <h1>ברוכים הבאים לאתר הקורסים שלנו!</h1>
+    <p>התחבר או הרשם כדי לגלות את הקורסים שלנו</p>
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-primary" (click)="login()">התחבר</button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-success" (click)="signUp()">הרשם</button>
+      </div>
+    </div>
+  </div>
 <router-outlet></router-outlet>

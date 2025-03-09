@@ -24,7 +24,6 @@ export class CoursesComponent {
   }
 
   loadCourses() {
-    console.log('the token is👍🏻: ', localStorage.getItem('auth_token'));
     this.courseService.getCourses().subscribe({
       next: (response) => {
         console.log('good');
@@ -40,5 +39,11 @@ export class CoursesComponent {
 
   onDetails(id: number) {
     this.router.navigate(['/courses', id]);
+  }
+
+  id: number = 5;
+  Add() {
+    console.log('comeeeeeee');
+    this.router.navigate(['/appManageCourses', this.id]);
   }
 }

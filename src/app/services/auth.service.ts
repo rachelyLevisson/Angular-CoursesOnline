@@ -13,7 +13,14 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   register(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
+    return this.http.post(`${this.apiUrl}/register`, user).pipe(
+      tap((res:any)=>{
+        if(res?.token){
+          this.setToken(res.token);
+          localStorage.setItem("user_role",res.role)     
+        }
+      })
+    )
   }
 
   login(credentials: any): Observable<any> {
