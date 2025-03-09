@@ -17,10 +17,10 @@
         <input matInput formControlName="password" type="password" required>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Role</mat-label>
         <input matInput formControlName="role" type="text" required>
-      </mat-form-field>
+      </mat-form-field> -->
 
 
       <div class="dropdown-container">
@@ -32,6 +32,11 @@
         </select>
       </div>
       <p>בחרת: {{ selectedOption.value }}</p>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <input matInput formControlName="role" type="text" required>
+      </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit">Register</button>
     </form>
