@@ -8,18 +8,13 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-  title = 'online-courses';
   constructor(private r : Router){}
 
-  see() {
-    this.title = 'Shabbat Shalom🥰✨';
-    console.log("wow open");
-    
+  login() {
+    this.r.navigate(['/login']);
   }
 
-  open() {
-    console.log("open login///....."); 
-    this.title = "now open login";
-    this.r.navigate(['/login']);
+  signUp() {
+    this.r.navigate(['/register']);
   }
 }

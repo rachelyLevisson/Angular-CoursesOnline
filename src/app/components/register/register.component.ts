@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterOutlet } from '@angular/router';
+import { time } from 'console';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +26,8 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 export class RegisterComponent {
   registrationForm: FormGroup;
+  selectedOption = new FormControl();
+  options = ['אפשרות 1', 'אפשרות 2', 'אפשרות 3'];
 
   constructor(private fb: FormBuilder, private httpAuth : AuthService, private router : Router) {
     this.registrationForm = this.fb.group({
@@ -38,8 +41,17 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registrationForm.valid) {
       console.log('Form Submitted!', this.registrationForm.value);
-     this.httpAuth.register(this.fb)
-     this.router.navigate(['/courses'])
+     this.httpAuth.register(this.fb).subscribe({
+      next: (res) => {
+        alert("הפרטים נשמרו בהצלחה!!");
+        this.router.navigate(['/courses'])
+      },
+      error: (e) => {
+        console.log(e);
+        alert("error!!! check this")
+      }
+     })
+      
     }
   }
 }
