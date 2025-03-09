@@ -20,7 +20,6 @@ export const authInterceptor = (req: any, next: any) => {
 
     if (token) {
       const authReq = req.clone({
-        // Headers: req.headers.Authorization(token),
         headers: req.headers.set('Authorization', token)
       });
       console.log(

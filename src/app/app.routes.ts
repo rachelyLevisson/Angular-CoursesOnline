@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'courses', component: CoursesComponent },
   { path: 'courses/:id', component: CourseDetailsComponent },
-  { path: 'manage-courses', component: ManageCoursesComponent }
+  { path: 'appManageCourses', component: ManageCoursesComponent }
 ];
 
 @NgModule({

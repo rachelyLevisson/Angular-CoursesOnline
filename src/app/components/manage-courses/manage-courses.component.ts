@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './manage-courses.component.css'
 })
 export class ManageCoursesComponent {
-
+title  = "hibyu";
 }

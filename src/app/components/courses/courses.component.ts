@@ -33,14 +33,12 @@ export class CoursesComponent {
       error: (error) => {
         if (error.status === 401) {
           console.log('error!!!! 401 go to login????');
-
-          // this.router.navigate(['/login']);
         }
       },
     });
   }
 
   onDetails(id: number) {
-    this.router.navigate(['/course-details', id]);
+    this.router.navigate(['/courses', id]);
   }
 }

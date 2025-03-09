@@ -4,28 +4,25 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth';
   private readonly TOKEN_KEY = 'auth_token';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   register(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
   login(credentials: any): Observable<any> {
-    console.log('AuthService - Login attempt with:', credentials.email);
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
       tap((response: any) => {
-        console.log('AuthService - Login response:', response);
         if (response?.token) {
-          const tokenWithBearer = `Bearer ${response.token}`;
-          console.log('AuthService - Setting token:', tokenWithBearer);
+          const tokenWithBearer = response.token;
           this.setToken(tokenWithBearer);
-          console.log('AuthService - Token after set:', this.getToken());
+          localStorage.setItem("user_role",response.role)          
         }
       })
     );
@@ -57,8 +54,10 @@ export class AuthService {
   logout(): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(this.TOKEN_KEY);
+      localStorage.removeItem("user_role")
     } else {
       console.warn('localStorage is not available');
     }
+
   }
 }

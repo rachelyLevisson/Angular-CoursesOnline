@@ -1,1 +1,16 @@
-<p>course-details works!</p>
+@if(detailCourse !== undefined){
+<h1>{{ detailCourse.title }}</h1>
+<p>{{ detailCourse.description }}</p>
+<p>the techer is: {{ detailCourse.teacherId }}</p>
+@if(role !== null){
+<button (click)="edit()">edit</button>
+<button (click)="deleteCourse()">delete</button>
+}
+
+} @else {
+<p>טוען נתונים...</p>
+}
+<!-- @if(){
+
+} -->
+<router-outlet></router-outlet>
