@@ -18,13 +18,13 @@ export class CourseDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private routerNavigate: Router
   ) {
-    this.role = localStorage.getItem("user_role");
+    this.role = localStorage.getItem('user_role');
   }
   ngOnInit(): void {
-    this.route.params.subscribe( (p) => {
+    this.route.params.subscribe((p) => {
       this.id = +p['id'];
       console.log('after: ', this.id);
-       this.coursService.getCourseById(this.id).subscribe({
+      this.coursService.getCourseById(this.id).subscribe({
         next: (res) => {
           this.detailCourse = res;
         },
@@ -37,20 +37,22 @@ export class CourseDetailsComponent implements OnInit {
     });
   }
 
-  edit(){
-    this.routerNavigate.navigate(['/appManageCourses']);
+  edit() {
+    this.routerNavigate.navigate(['/editCourses',this.id]);
   }
 
-  deleteCourse(){
-this.coursService.deleteCourse(this.id).subscribe({
-  next:(res)=>{
-    console.log("the delete do the succsess");
-  },
-  error:(e)=>{
-    if (e.status === 401) {
-      console.log('error!!!! dont delete');
-    }
-  }
-})
+  deleteCourse() {
+    this.coursService.deleteCourse(this.id).subscribe({
+      next: (res) => {
+        console.log('the delete do the succsess');
+        alert('the delete do the succsess');
+        this.routerNavigate.navigate(['/courses']);
+      },
+      error: (e) => {
+        if (e.status === 401) {
+          alert('error!!!! dont delete');
+        }
+      },
+    });
   }
 }

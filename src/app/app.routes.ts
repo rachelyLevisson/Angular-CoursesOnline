@@ -6,6 +6,7 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { ManageCoursesComponent } from './components/manage-courses/manage-courses.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { RouterModule, Routes } from '@angular/router';
+import { EditCoursesComponent } from './components/edit-courses/edit-courses.component';
 
 export const routes: Routes = [
   { path: '',component : HomePageComponent },
@@ -13,7 +14,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'courses', component: CoursesComponent },
   { path: 'courses/:id', component: CourseDetailsComponent },
-  { path: 'appManageCourses/:id', component: ManageCoursesComponent }
+  { path: 'appManageCourses/:id', component: ManageCoursesComponent },
+  { path: 'editCourses/:id', component: EditCoursesComponent }
 ];
 
 @NgModule({

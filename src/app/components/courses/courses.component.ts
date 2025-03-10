@@ -47,7 +47,7 @@ export class CoursesComponent {
 
   id: number = 5;
   Add() {
-    console.log('comeeeeeee');
+    console.log("come here");
     this.router.navigate(['/appManageCourses', this.id]);
   }
 }
