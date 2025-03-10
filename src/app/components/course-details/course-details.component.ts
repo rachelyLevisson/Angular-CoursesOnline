@@ -13,6 +13,8 @@ export class CourseDetailsComponent implements OnInit {
   detailCourse: any;
   id: number = 0;
   role: any;
+  userId: any = localStorage.getItem('userID');
+
   constructor(
     private coursService: CourseService,
     private route: ActivatedRoute,
@@ -38,7 +40,7 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   edit() {
-    this.routerNavigate.navigate(['/editCourses',this.id]);
+    this.routerNavigate.navigate(['/editCourses', this.id]);
   }
 
   deleteCourse() {
@@ -55,4 +57,38 @@ export class CourseDetailsComponent implements OnInit {
       },
     });
   }
+
+  enroll() {
+    this.coursService.enrollCourse(this.id,this.userId).subscribe({
+      next: (res) => {
+        console.log('come to encoll');
+        alert('the encoll do the succsess');
+      },
+      error: (e) => {
+        if (e.status === 401) {
+          alert('error!!!! dont delete');
+        }
+        if(e.status === 500){
+          alert('you are already enrolled in this course');
+        }
+      },
+    });
+  }
+  unroll() {
+    this.coursService.unrollCourse(this.id,this.userId).subscribe({
+      next: (res) => {
+        console.log('come to encoll');
+        alert('the encoll do the succsess');
+      },
+      error: (e) => {
+        if (e.status === 401) {
+          alert('error!!!! dont delete');
+        }
+        if(e.status === 500){
+          alert('you are already enrolled in this course');
+        }
+      },
+    });
+  }
 }
+

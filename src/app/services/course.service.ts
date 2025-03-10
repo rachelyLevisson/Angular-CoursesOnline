@@ -41,6 +41,18 @@ export class CourseService {
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
 
+  enrollCourse(courseId: number, userId: number): Observable<any> {
+    const headers = this.createHeaders();
+    return this.http.post(`${this.apiUrl}/${courseId}/enroll`, {userId}, { headers });
+  }
+
+  unrollCourse(courseId: number, userId: number): Observable<any> {
+    console.log('courseId:', courseId);
+    console.log('userID:', userId);
+    const headers = this.createHeaders();
+    return this.http.delete(`${this.apiUrl}/${courseId}/unroll`, {headers, body: { userId }});
+  }
+
   private createHeaders(): HttpHeaders {
     this.token = localStorage.getItem('auth_token');
     return new HttpHeaders({
