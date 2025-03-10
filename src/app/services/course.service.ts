@@ -7,29 +7,34 @@ import { Observable } from 'rxjs';
 })
 export class CourseService {
   private apiUrl = 'http://localhost:3000/api/courses';
+  private token = localStorage.getItem('auth_token');
+
 
   constructor(private http: HttpClient) {}
 
   getCourses(): Observable<any> {
-    const token = localStorage.getItem('auth_token');
+    // const token = localStorage.getItem('auth_token');
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${this.token}`
     });
     return this.http.get(this.apiUrl,{headers});
   }
 
   getCourseById(id: number): Observable<any> {
-    console.log("you come???/");
-    const token = localStorage.getItem('auth_token');
-    console.log("token: ",token);
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${this.token}`
     });
     return this.http.get(`${this.apiUrl}/${id}`, {headers});
   }
 
   createCourse(course: any): Observable<any> {
-    return this.http.post(this.apiUrl, course);
+    console.log("token hedaer: ", this.token);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    console.log("here header....");
+    
+    return this.http.post(this.apiUrl, course,{headers});
   }
 
   updateCourse(id: number, course: any): Observable<any> {

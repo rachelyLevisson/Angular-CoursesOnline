@@ -12,6 +12,7 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 export class CoursesComponent {
   allCours: any[] = [];
+  admin: boolean = false;
 
   constructor(
     private courseService: CourseService,
@@ -20,6 +21,9 @@ export class CoursesComponent {
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.loadCourses();
+    }
+    if (localStorage.getItem('user_role') !== 'student') {
+      this.admin = true;
     }
   }
 

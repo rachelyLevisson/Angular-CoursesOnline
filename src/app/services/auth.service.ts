@@ -14,13 +14,14 @@ export class AuthService {
 
   register(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user).pipe(
-      tap((res:any)=>{
-        if(res?.token){
+      tap((res: any) => {
+        if (res?.token) {
           this.setToken(res.token);
-          localStorage.setItem("user_role",res.role)     
+          localStorage.setItem('user_role', res.role);
+          localStorage.setItem('userID', res.userId);
         }
       })
-    )
+    );
   }
 
   login(credentials: any): Observable<any> {
@@ -29,7 +30,8 @@ export class AuthService {
         if (response?.token) {
           const tokenWithBearer = response.token;
           this.setToken(tokenWithBearer);
-          localStorage.setItem("user_role",response.role)          
+          localStorage.setItem('user_role', response.role);
+          localStorage.setItem('userID', response.userId);
         }
       })
     );
@@ -61,10 +63,10 @@ export class AuthService {
   logout(): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(this.TOKEN_KEY);
-      localStorage.removeItem("user_role")
+      localStorage.removeItem('user_role');
+      localStorage.removeItem('userID');
     } else {
       console.warn('localStorage is not available');
     }
-
   }
 }

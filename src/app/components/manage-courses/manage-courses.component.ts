@@ -3,10 +3,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { title } from 'process';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { CourseService } from '../../services/course.service';
 
 @Component({
   selector: 'app-manage-courses',
@@ -26,22 +26,33 @@ export class ManageCoursesComponent {
 
   constructor(
     private fb: FormBuilder,
-    private httpAuth: AuthService,
-    private router: Router
+    private router: Router,
+    private courseService: CourseService
   ) {
+    console.log("userID: ", localStorage.getItem('userID'));
+    
     this.courseForm = this.fb.group({
       title: [''],
       description: [''],
-      teacherId: [''],
+      teacherId: localStorage.getItem('userID'),
     });
   }
 
-  // ngOnInit(): void {}
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.courseForm.valid) {
       console.log('Course Data:', this.courseForm.value);
-      // כאן תוכל להוסיף את הקוד לשליחה לשרת
+      this.courseService.createCourse(this.courseForm.value).subscribe({
+        next: (res) => {
+          alert('הפרטים נשמרו בהצלחה!!');
+          this.router.navigate(['/courses']);
+        },
+        error: (e) => {
+          console.log(e);
+          alert('error!!! check this');
+        }
+      });
     }
   }
 }

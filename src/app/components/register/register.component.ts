@@ -51,12 +51,13 @@ export class RegisterComponent {
   }
 
   protected onInput(event: Event) {
+    console.log("come??");
     this.value.set((event.target as HTMLInputElement).value);
   }
   onSubmit() {
-    if (this.registrationForm.valid) {
+    if (this.registrationForm.valid) {      
       console.log('Form Submitted!', this.registrationForm.value);
-      this.httpAuth.register(this.fb).subscribe({
+      this.httpAuth.register(this.registrationForm.value).subscribe({
         next: (res) => {
           alert('הפרטים נשמרו בהצלחה!!');
           this.router.navigate(['/courses']);
