@@ -1,8 +1,16 @@
 @if(detailCourse !== undefined){
 <h1>{{ detailCourse.title }}</h1>
 <p>{{ detailCourse.description }}</p>
-<p>the techer is: {{ detailCourse.teacherId }}</p>
-@if(role !== null){
+<p>the teacher is: {{ detailCourse.teacherId }}</p>
+
+<div>
+    <h3>List Lesson:</h3>
+    @for (item of listLessons; track item.courseId) {
+      <p>  {{ item.title }}</p>
+      <p>  {{ item.content }}</p>
+    }
+</div>
+@if(role !== 'student'){
 <button (click)="edit()">edit</button>
 <button (click)="deleteCourse()">delete</button>
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { LessonService } from '../../services/lesson.service';
 
 @Component({
   selector: 'app-course-details',
@@ -11,12 +12,14 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 })
 export class CourseDetailsComponent implements OnInit {
   detailCourse: any;
+  listLessons: any;
   id: number = 0;
   role: any;
   userId: any = localStorage.getItem('userID');
 
   constructor(
     private coursService: CourseService,
+    private lessonService: LessonService,
     private route: ActivatedRoute,
     private routerNavigate: Router
   ) {
@@ -37,6 +40,7 @@ export class CourseDetailsComponent implements OnInit {
         },
       });
     });
+    this.loadLesson();
   }
 
   edit() {
@@ -84,8 +88,22 @@ export class CourseDetailsComponent implements OnInit {
         if (e.status === 401) {
           alert('error!!!! dont delete');
         }
-        if(e.status === 500){
-          alert('you are already enrolled in this course');
+        if(e.status === 404){
+          alert('Student not found in course');
+        }
+      },
+    });
+  }
+
+
+  loadLesson(){
+    this.lessonService.getLessons(this.id).subscribe({
+      next: (res) => {
+        this.listLessons = res;
+      },
+      error: (e) => {
+        if (e.status === 401) {
+          console.log('error!!!! 401 go to login????');
         }
       },
     });
