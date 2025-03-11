@@ -81,8 +81,7 @@ export class CourseDetailsComponent implements OnInit {
   unroll() {
     this.coursService.unrollCourse(this.id,this.userId).subscribe({
       next: (res) => {
-        console.log('come to encoll');
-        alert('the encoll do the succsess');
+        alert('the uncoll do the succsess');
       },
       error: (e) => {
         if (e.status === 401) {

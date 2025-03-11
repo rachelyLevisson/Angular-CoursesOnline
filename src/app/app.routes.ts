@@ -13,8 +13,26 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'courses', component: CoursesComponent },
-  { path: 'courses/:id', component: CourseDetailsComponent },
-  { path: 'appManageCourses/:id', component: ManageCoursesComponent },
+  { path: 'courses/:id', component: CourseDetailsComponent ,
+    data: {
+      prerender: true,
+      getPrerenderParams: (context:any) => {
+        return {
+          id: context.params.id
+        };
+      }
+    }
+  },
+  { path: 'appManageCourses/:id', component: ManageCoursesComponent,
+    data: {
+      prerender: true,
+      getPrerenderParams: (context: any) => {
+        return {
+          id: context.params.id
+        };
+      }
+    }
+   },
   { path: 'editCourses/:id', component: EditCoursesComponent }
 ];
 

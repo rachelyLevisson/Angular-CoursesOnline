@@ -50,7 +50,7 @@ export class CourseService {
     console.log('courseId:', courseId);
     console.log('userID:', userId);
     const headers = this.createHeaders();
-    return this.http.delete(`${this.apiUrl}/${courseId}/unroll`, {headers, body: { userId }});
+    return this.http.delete(`${this.apiUrl}/${courseId}/unenroll`, {headers, body: { userId }});
   }
 
   private createHeaders(): HttpHeaders {

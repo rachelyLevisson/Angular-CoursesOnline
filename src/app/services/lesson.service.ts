@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LessonService {
-  private apiUrl = 'http://localhost:3000/api/courses/';
+  private apiUrl = 'http://localhost:3000/api/courses';
   private token: string | null = localStorage.getItem('auth_token');
 
   constructor(private http: HttpClient) { }

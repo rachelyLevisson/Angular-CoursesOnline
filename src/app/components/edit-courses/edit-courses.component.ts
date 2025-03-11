@@ -71,11 +71,16 @@ export class EditCoursesComponent implements OnInit {
             alert('הפרטים נשמרו בהצלחה!!');
             this.router.navigate(['/courses']);
           },
-          error: (e) => {
-            console.log(e);
-            alert('error!!! check this');
-          },
-        });
+            error: (error) => {
+              const errorMessage = error.status === 401 
+                ? 'אנא התחבר/י מחדש למערכת'
+                : 'אירעה שגיאה בעדכון הקורס. אנא נסה/י שוב.';
+              alert(errorMessage);
+              if (error.status === 401) {
+                this.router.navigate(['/login']);
+              }
+            }
+          });
     }
   }
 }
