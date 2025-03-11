@@ -1,0 +1,8 @@
+  <input [(ngModel)]="email" type="text" placeholder="name" />
+  <input type="password" [(ngModel)]="password" placeholder="password" />
+  <button (click)="send()">login</button>
+  
+@if(flag == true){
+<h6>flag: {{ flag }}</h6>
+<router-outlet></router-outlet>
+}
