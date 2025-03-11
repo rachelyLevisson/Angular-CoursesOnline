@@ -1,0 +1,25 @@
+<div class="courses-container">
+  <h1>Courses List</h1>
+  @for(course of allCours; track course.id) {
+  <div class="course-card">
+    <h2>{{ course.title }}</h2>
+    <p>{{ course.description }}</p>
+    <div class="course-details">
+      <span class="price">Title: {{ course.teacherId }}</span>
+      <!-- <span class="duration">Duration: {{ course.duration }}</span> -->
+    </div>
+    <button class="details-btn" (click)="onDetails(course.id)">
+      View Details
+    </button>
+  </div>
+  } @empty {
+  <div class="no-courses">
+    <p>No courses available at the moment.</p>
+  </div>
+  }
+@if(admin){
+  <button (click)="Add()">Add Courses</button>
+}
+</div>
+
+<router-outlet></router-outlet>
